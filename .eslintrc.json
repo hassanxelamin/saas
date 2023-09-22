@@ -1,0 +1,102 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb/hooks",
+    "prettier",
+    "airbnb-typescript",
+    "plugin:import/typescript",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:storybook/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "rules": {
+    "import/prefer-default-export": 0,
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "import/extensions": "off",
+    "import/no-unresolved": [2, { "ignore": ["^@/"] }],
+    "react/function-component-definition": "off",
+    "react/require-default-props": "off",
+    /* 
+      The rule "no-console" is currently set to "off" for debugging purposes. 
+      Once a proper production-level error handling mechanism is in place (e.g., a logging library or error reporting service), 
+      this rule should be re-enabled to prevent unintended console statements from appearing in the production code. 
+      The commented configuration allows "console.error()" but disallows other console methods like "console.log()". 
+      
+      TO DO: Replace console statements with a production-level error handling solution and enable the "no-console" rule.
+    */
+
+    "no-console": "off",
+
+    // Uncomment the following lines after implementing a production-level error handling solution:
+
+    // "no-console": [
+    //   "error",
+    //   {
+    //     "allow": ["error"]
+    //   }
+    // ],
+    "no-const-assign": "warn",
+    "no-extra-semi": "error",
+    "import/no-extraneous-dependencies": ["error", {"optionalDependencies": ["uuid"]}],
+    "no-undef": "warn",
+    "no-unreachable": "warn",
+    "no-unsafe-finally": "warn",
+    "no-unused-vars": "warn",
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowTernary": true
+      }
+    ],
+    "react/no-array-index-key": "warn",
+    "prefer-const": "warn",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx", ".tsx"]
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": 1,
+    "react/no-unused-state": "warn",
+    "react/react-in-jsx-scope": 0,
+    "react/no-unescaped-entities": ["off"],
+    "semi": ["error", "always"]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.stories.tsx"],
+      "rules": {
+        "react/jsx-props-no-spreading": "off",
+        "react/function-component-definition": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+name: Workflow Name # Replace "Workflow Name" with a suitable name for your workflow
+
+on:
+  push:
+    branches: [main] # Replace "main" with the branch you want to trigger the workflow
+  pull_request:
+    branches: [main] # Replace "main" with the branch you want to trigger the workflow
+
+env:
+  ENV_TYPE: production
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # or another runner of your choice
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: '[client] Install dependencies'
+        run: |
+          yarn install --frozen-lockfile
+
+      - name: '[client] Run ESLint'
+        run: |
+          yarn eslint 'src/**/*.{ts,tsx}' --ext .tsx
+
+      - name: '[client] Run Prettier'
+        run: |
+          yarn prettier --config .prettierrc 'src/**/*.{ts,tsx}' --write
+
+      - name: '[client] Run TypeScript compiler'
+        run: |
+          yarn tsc
+
+      - name: '[client] Build'
+        run: |
+          yarn build

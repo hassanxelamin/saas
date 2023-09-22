@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id          String  @id  @default(cuid())
+  active      Boolean
+  name        String
+  metadata    Json
+  prices      Price[]
+}
+
+model Price {
+  id                 String   @id @default(cuid())
+  productId          String
+  product            Product  @relation(fields: [productId], references: [id])
+  active             Boolean
+  currency           String
+  type               String
+  unit_amount        Int?
+  interval           String?
+  interval_count     Int?
+  trial_period_days  Int?
+  metadata           Json
+  subscriptions  Subscription[] 
+}
+
+model User {
+  id              String     @id @default(cuid())
+  clerkUserId     String     @map("clerk_user_id") @unique
+  email           String
+  customer        Customer?   @relation
+  customerId      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Customer {
+  id                String         @id @default(cuid())
+  stripeCustomerId  String         @map("stripe_customer_id") @unique
+  user              User           @relation(fields: [userId], references: [id])
+  userId            String         @unique
+  email             String         // Add this line
+  subscriptions     Subscription[]
+  billingAddress    Json?          // New field
+  paymentMethod     Json?          // New field
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Subscription {
+  id                    String   @id @default(cuid())
+  customer              Customer @relation(fields: [customerId], references: [id])
+  customerId            String
+  metadata              Json
+  status                String
+  priceId    String
+  price      Price     @relation(fields: [priceId], references: [id])
+  quantity              Int?
+  cancelAtPeriodEnd     Boolean
+  cancelAt              DateTime?
+  canceledAt            DateTime?
+  currentPeriodStart    DateTime
+  currentPeriodEnd      DateTime
+  created               DateTime
+  endedAt               DateTime?
+  trialStart            DateTime?
+  trialEnd              DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

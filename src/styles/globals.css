@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #FFFFFF;
+  --secondary-color: #F5F5F5;
+  --accent-color: #B4A2FF;
+  --text-color: #030203;
+}
+
+@font-face {
+  font-family: 'Montreal';
+  src: url('/fonts/PPNeueMontreal-Regular.woff2') format('woff2'),
+    url('/fonts/PPNeueMontreal-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montreal';
+  src: url('/fonts/PPNeueMontreal-Medium.woff2') format('woff2'),
+    url('/fonts/PPNeueMontreal-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mobil';
+  src: url('/fonts/MobilTrial-Black.woff2') format('woff2'),
+    url('/fonts/MobilTrial-Black.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Mona';
+  src: url('/fonts/Mona-Sans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mona';
+  src: url('/fonts/Mona-Sans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mona';
+  src: url('/fonts/Mona-Sans-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mona';
+  src: url('/fonts/Mona-Sans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+  padding: 0;
+}
+
+body {
+  min-block-size: 100vh;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+  width: auto;
+  height: auto;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+figcaption {
+  max-width: 60ch;
+}
+
+a {
+  text-decoration: none;
+}
